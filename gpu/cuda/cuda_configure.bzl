@@ -317,6 +317,8 @@ def _create_cuda_ptx_copts_list(repository_ctx, cuda_version):
         else:
             print("This OS or architecture isn't supported by Hermetic C++.")
 
+    clang_major_version = "22"
+
     if not clang_major_version:
         cc = _find_cc(repository_ctx)
         if _is_clang(cc):

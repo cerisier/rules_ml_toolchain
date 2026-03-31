@@ -178,7 +178,7 @@ def cuda_header_library(
         **kwargs
     )
 
-def cuda_library(copts = [], tags = [], deps = [], implementation_deps = [], **kwargs):
+def cuda_library(copts = [], defines = [], tags = [], deps = [], implementation_deps = [], **kwargs):
     """Wrapper over cc_library which adds default CUDA options."""
     native.cc_library(
         copts = cuda_default_copts() + copts,
@@ -186,10 +186,11 @@ def cuda_library(copts = [], tags = [], deps = [], implementation_deps = [], **k
         deps = deps + if_cuda_is_configured([
             "@local_config_cuda//cuda:implicit_cuda_headers_dependency",
         ]),
-        implementation_deps = implementation_deps + if_cuda_hermetic_clang([
-            "%{hermetic_wrappers_headers}",
-        ]),
-        defines = [
+        implementation_deps = implementation_deps,
+#        implementation_deps = implementation_deps + if_cuda_hermetic_clang([
+#            "%{hermetic_wrappers_headers}",
+#        ]),
+        defines = defines + [
             "CLANG_CUDA=1",
         ],
         **kwargs

@@ -537,6 +537,7 @@ PTX_VERSION_DICT = {
         "19": "8.5",
         "20": "8.7",
         "21": "8.8",
+        "22": "9.0",
     },
     # To find, look at https://docs.nvidia.com/cuda/parallel-thread-execution/index.html#release-notes
     "cuda": {
